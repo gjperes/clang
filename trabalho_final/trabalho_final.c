@@ -63,7 +63,6 @@ void criaPilha(PILHA *p, int linha, int coluna) {
     // Esse novo nó se torna o topo da pilha
     p->topo = novo;
 
-    printf("Empilhando na pos: %d | %d\n", linha, coluna);
 }
 
 /**
@@ -72,70 +71,100 @@ void criaPilha(PILHA *p, int linha, int coluna) {
  * @param p Recebe o endereço da pilha a ser removida
  */
 void removePilha(PILHA *p) {
-    
     NODE *topo = p->topo; // Nó auxiliar que aponta para o elemento no topo da pilha
-    int linha, coluna;
 
     p->topo = topo->aponta; // O topo da pilha passa a ser o endereço do penúltimo elemento da pilha, apontado por esse nó
-    
-    // aqui serve apenas para apresentação visual
-    linha = topo->linha;
-    coluna = topo->coluna;
-    printf("Removido pos: %d | %d\n", linha, coluna);
-    // fim apresentação visual
-
     free(topo); // Libera de memória o nó auxiliar
 }
 
-int verifica(PILHA *pilha, char **mapa){
-    PILHA *p = pilha;
-    int i, j;
-    int saida = 0;
+/**
+ * @brief Verifica as rotas possíveis para o robô
+ * 
+ * @param pilha Endereço da pilha que irá armazenar a rota
+ * @param mapa Matriz que contém o mapa do labirinto
+ * @return int -- Nessa versão é obrigatório o mapa ter uma solução possível, o return será sempre 1
+ */
+int verifica(PILHA *pilha, char **mapa) {
+    int i, j, aux1, aux2;
+    int encontrouSaida = 0;
 
     do {
         i = pilha->topo->linha;
         j = pilha->topo->coluna;
+        
+        if( (i - 1 > -1) && (mapa[i-1][j] == VAZIO || mapa[i-1][j] == START) ) {
+            i--;
 
-        if(matriz[i][j] == START)
-            saida = 1;
+            criaPilha(pilha, i, j);
+
+            if(mapa[i][j] == START)
+                encontrouSaida = 1;
+
+            mapa[i][j] = CHECK;
+
+        }
+        else if( (j + 1 < LATERAL) && (mapa[i][j+1] == VAZIO || mapa[i][j+1] == START) ) {
+            j++;
+
+            criaPilha(pilha, i, j);
+
+            if(mapa[i][j] == START)
+                encontrouSaida = 1;
+
+            mapa[i][j] = CHECK;
+        }
+        else if( (i + 1 < ALTURA) && (mapa[i+1][j] == VAZIO || mapa[i+1][j] == START) ) {
+            i++;
+
+            criaPilha(pilha, i, j);
+
+            if(mapa[i][j] == START)
+                encontrouSaida = 1;
+
+            mapa[i][j] = CHECK;
+        }
+        else if( (j - 1 > -1) && (mapa[i][j-1] == VAZIO || mapa[i][j-1] == START) ) {
+            j--;
+
+            criaPilha(pilha, i, j);
+
+            if(mapa[i][j] == START)
+                encontrouSaida = 1;
+
+            mapa[i][j] = CHECK;
+        }
         else {
-
-            // NORTE
-            if( (i - 1 > -1) && (mapa[i-1][j] != MURO) && (mapa[i-1][j] != CHECK) ) {
-                criaPilha(*p, (i-1), j);
-                mapa[i-1][j] = CHECK;
-                verifica(pilha, matriz);
-            }
-
-            // LESTE
-            if( (j + 1 < LATERAL) && (mapa[i][j+1] != MURO) && (mapa[i][j+1] != CHECK) ) {
-                criaPilha(*p, i, (j+1));
-                mapa[i][j+1] = CHECK;
-                verifica(pilha, matriz);
-            } 
-
-            // SUL
-            if( (i + 1 < ALTURA) && (mapa[i+1][j] != MURO) && (mapa[i+1][j] != CHECK) ) {
-                criaPilha(*p, (i+1), j);
-                mapa[i+1][j] = CHECK;
-                verifica(pilha, matriz);
-            } 
-
-            // OESTE
-            if ( (j - 1 > -1) && (mapa[i][j-1] != MURO) && (mapa[i][j-1] != CHECK) ) {
-                criaPilha(*p, i, (j-1));
-                mapa[i][j-1] = CHECK;
-                verifica(pilha, matriz);
-            }
+            printf("Opa! Encontrou uma parede! Linha:%2d Coluna:%2d\n", i, j);
+            removePilha(pilha);
+            
+            if(pilha->topo == NULL)
+                return 0; 
+                // aqui ele "buga", ele continua procurando um pouco mais no programa, mas por algum motivo ele retorna o 0 e informa que não tem solução
+                // não resolvi por tempo hábil... mas gostaria de entender como resolver isso hehe
         }
 
-    } while(!saida);
+        if(encontrouSaida)
+            printf("\nEncontrou a saída na Linha:%2d Coluna:%2d\n", i, j);
+        else
+            printf("\nProcurando a saída na Linha:%2d Coluna:%2d\n", i, j);
+    
+        for(aux1=0; aux1 < ALTURA; aux1++) {
+
+            for(aux2=0; aux2 < LATERAL; aux2++)
+                printf("%c", mapa[aux1][aux2]);
+        
+            printf("\n");
+        }
+
+    } while(!encontrouSaida);
+
+    return encontrouSaida;
 }
 
 int main(int argc, char *argv[]) {
     PILHA pilha;
     FILE *fp;
-    int i, j;
+    int i, j, cont=1;
     char **mapa, buffer[8192];
 
     // Verifica se é possível criar || abrir arquivo do labirinto
@@ -166,9 +195,30 @@ int main(int argc, char *argv[]) {
     }
     fclose(fp);
 
-    // ALTERAR APENAS ESSA PARTE DO CÓDIG
-    verifica();
-    // ALTERAR APENAS ESSA PARTE DO CÓDIGO
+    // Input do início pelo usuário
+    printf("Insira a linha de início do robo\n");
+    scanf("%d", &i);
+    printf("Insira a coluna de início do robo\n");
+    scanf("%d", &j);
+
+    mapa[i][j] = START;
+
+    if(verifica(&pilha, mapa)) {
+        printf("\nRota para sair do labirinto:\n");
+
+        // Libera em memória a pilha - O QUE PODE SER MELHORADO: Editar o conteúdo para símbolos que representem o nível em que o robo acessou tal posição
+        while(pilha.topo != NULL) {
+            i = pilha.topo->linha;
+            j = pilha.topo->coluna;
+
+            removePilha(&pilha);
+            printf("%2do movimento: L=%2d C=%2d\n", cont++, i, j);
+        }
+
+        printf("\n");
+    } else {
+        printf("O labirinto não tem solução\n");
+    }
 
     // Desaloca a memória utilizada para gravar o mapa em memória
     for(i=0; i < ALTURA; i++) {
