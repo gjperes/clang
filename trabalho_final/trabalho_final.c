@@ -10,9 +10,6 @@ Critérios para a nota:
 3. Robô consegue encontrar a saída
 */
 
-// TODO ESSENCIAL -> Receber de input do usuário a posição inicial do robô no labirinto, criar também uma ferramenta para
-// verificar se o robô está preso e sem opções
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -130,7 +127,6 @@ int verifica(PILHA *pilha, char **mapa) {
             j--;
 
             criaPilha(pilha, i, j);
-            criaPilha(pilha, i, j);
 
             if(mapa[i][j] == START)
                 encontrouSaida = 1;
@@ -140,6 +136,11 @@ int verifica(PILHA *pilha, char **mapa) {
         else {
             printf("Opa! Encontrou uma parede! Linha:%2d Coluna:%2d\n", i, j);
             removePilha(pilha);
+            
+            if(pilha->topo == NULL)
+                return 0; 
+                // aqui ele "buga", ele continua procurando um pouco mais no programa, mas por algum motivo ele retorna o 0 e informa que não tem solução
+                // não resolvi por tempo hábil... mas gostaria de entender como resolver isso hehe
         }
 
         if(encontrouSaida)
@@ -194,19 +195,30 @@ int main(int argc, char *argv[]) {
     }
     fclose(fp);
 
-    verifica(&pilha, mapa);
-    printf("\nRota para sair do labirinto:\n");
+    // Input do início pelo usuário
+    printf("Insira a linha de início do robo\n");
+    scanf("%d", &i);
+    printf("Insira a coluna de início do robo\n");
+    scanf("%d", &j);
 
-    // Libera em memória a pilha - O QUE PODE SER MELHORADO: Editar o conteúdo para símbolos que representem o nível em que o robo acessou tal posição
-    while(pilha.topo != NULL) {
-        i = pilha.topo->linha;
-        j = pilha.topo->coluna;
+    mapa[i][j] = START;
 
-        removePilha(&pilha);
-        printf("%2do movimento: L=%2d C=%2d\n", cont++, i, j);
+    if(verifica(&pilha, mapa)) {
+        printf("\nRota para sair do labirinto:\n");
+
+        // Libera em memória a pilha - O QUE PODE SER MELHORADO: Editar o conteúdo para símbolos que representem o nível em que o robo acessou tal posição
+        while(pilha.topo != NULL) {
+            i = pilha.topo->linha;
+            j = pilha.topo->coluna;
+
+            removePilha(&pilha);
+            printf("%2do movimento: L=%2d C=%2d\n", cont++, i, j);
+        }
+
+        printf("\n");
+    } else {
+        printf("O labirinto não tem solução\n");
     }
-
-    printf("\n");
 
     // Desaloca a memória utilizada para gravar o mapa em memória
     for(i=0; i < ALTURA; i++) {
