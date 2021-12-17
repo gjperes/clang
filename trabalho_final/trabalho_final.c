@@ -62,7 +62,6 @@ void criaPilha(PILHA *p, int linha, int coluna) {
 
     // Esse novo nó se torna o topo da pilha
     p->topo = novo;
-
 }
 
 /**
