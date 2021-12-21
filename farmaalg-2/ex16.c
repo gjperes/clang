@@ -14,13 +14,14 @@
 
 #include <stdio.h>
 
-int main(){
-    
-    printf("%x\n", ~85);
-    printf("%x\n", (9 << 2));
-    printf("%x\n", (9 >> 2));
-    printf("%x\n", (255 >> 2));
-    printf("%x\n", (255 << 2));
+int main()
+{
+
+    printf("a) %x\n", ~85);
+    printf("b) %x\n", (9 << 2));
+    printf("c) %x\n", (9 >> 2));
+    printf("d) %x\n", (255 >> 2));
+    printf("e) %x\n", (255 << 2));
 
     return 0;
 }

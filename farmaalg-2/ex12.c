@@ -2,11 +2,13 @@
 // a função deve modificar o valor de nro de tal forma que o n-bit seja modificado para 1
 // e retornar o novo valor.
 
-int setBit(int nro, int bit) {
-    // complemente o código
-    
-    
+#include <stdio.h>
 
+int resetBit(int nro, int bit) {
+    // complemente o código
+    for (int i=31; i >= 0; i--)
+        bit = 0x01 << i || nro;
+    
     return bit;
 }
 
