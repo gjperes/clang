@@ -1,6 +1,6 @@
 # C Language 👨‍💻
 
-Atividades de Linguagem de Programação, assim como exercícios gerais utilizando a linguagem C.
+Atividades de Linguagem de Programação, assim como exercícios gerais utilizando a linguagem C
 
 
 ## Ferramentas
