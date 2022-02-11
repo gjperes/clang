@@ -7,18 +7,13 @@ struct Vetor {
   int inicio, fim;
 };
 
-Tipo_Lista* criarLista(int *valores) {
+Tipo_Lista* criarLista() {
   Tipo_Lista *novaLista;
-  int i = 0;
 
   novaLista = (Tipo_Lista *)malloc(sizeof(Tipo_Lista));
 
-  while(*valores) {
-    novaLista->dados[i] = valores[i];
-    
-    i++;
-    valores++;
-  }
+  if(novaLista != NULL)
+    novaLista->fim = 0;
 
   return novaLista;
 }
