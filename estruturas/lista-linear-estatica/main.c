@@ -119,7 +119,10 @@ int main(int argc, char **argv) {
         printf("ERRO: Seleção inválida\n");
     }
 
-  } while(operacaoMenu != 12)
+    printf("ENTER para Continuar...\n");
+    scanf();
+
+  } while(operacaoMenu != 12);
 
   return 0;
 }
