@@ -106,7 +106,7 @@ int removerInicioLista(Tipo_Lista *lista)
 {
   if (lista == NULL)
     return 0;
-  if (verificarListaVazia)
+  if (verificarListaVazia(lista))
     return 0;
 
   for (int i = 0; i < (lista->fim - 1); i++)
@@ -123,7 +123,7 @@ int removerFinalLista(Tipo_Lista *lista)
 {
   if (lista == NULL)
     return 0;
-  if (verificarListaVazia)
+  if (verificarListaVazia(lista))
     return 0;
 
   lista->dados[lista->fim] = 0;
@@ -136,7 +136,7 @@ int removerMeioLista(Tipo_Lista *lista, int valor)
 {
   if (lista == NULL)
     return 0;
-  if (verificarListaVazia)
+  if (verificarListaVazia(lista))
     return 0;
 
   int i = 0;
