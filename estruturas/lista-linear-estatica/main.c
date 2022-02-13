@@ -122,8 +122,7 @@ int main(int argc, char **argv)
       break;
 
     case 11:
-      if (!(imprimirLista(li)))
-        printf("ERRO: Erro ao imprimir a lista!\n");
+      imprimirLista(li);
       break;
 
     default:
