@@ -9,7 +9,7 @@ int imprimirMenu()
 
   printf("MENU PRINCIPAL - Selecione a operação desejada:\n");
   printf(" 1 - Criar a lista estática\n");
-  printf(" 2 - Liberar  lista estática\n");
+  printf(" 2 - Liberar lista estática\n");
   printf(" 3 - Inserir no início\n");
   printf(" 4 - Inserir no fim\n");
   printf(" 5 - Inserir no meio (ordenado)\n");
@@ -20,7 +20,7 @@ int imprimirMenu()
   printf("10 - Consultar pela posição\n");
   printf("11 - Imprimir Lista Estática\n");
   printf("12 - Sair\n");
-  printf("\n");
+  printf("\nMENU PRINCIPAL - Seleção: ");
   scanf("%d", &selecaoMenu);
 
   return selecaoMenu;
@@ -131,6 +131,6 @@ int main(int argc, char **argv)
     printf("==========================================\n");
   } while (operacaoMenu != 12);
 
-  printf("Fim da execução.");
+  printf("Fim da execução\n");
   return 0;
 }
