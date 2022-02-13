@@ -26,11 +26,27 @@ int imprimirMenu()
   return selecaoMenu;
 }
 
+/**
+ * @brief A função recebe um boolean e 2 parâmetros string. Retorna o primeiro param. string se o bool for verdadeiro, do contrário, retorna o segundo param string.
+ *
+ * @param bool Boolean que valida qual string será retornada para a função
+ * @param sucesso String a ser retornada caso o bool seja verdadeiro
+ * @param falha String a ser retornada caso o bool seja falso
+ * @return char*
+ */
+char *logFuncao(int bool, char *sucesso, char *falha)
+{
+  if (bool)
+    return sucesso;
+  return falha;
+}
+
 int main(int argc, char **argv)
 {
   Tipo_Lista *li = NULL;
   int operacaoMenu;
   int inputUser;
+  int observerFuncao;
 
   do
   {
@@ -41,9 +57,6 @@ int main(int argc, char **argv)
     switch (operacaoMenu)
     {
     case 1:
-      if (li != NULL)
-        liberarLista(li);
-
       li = criarLista();
       break;
 
@@ -55,78 +68,64 @@ int main(int argc, char **argv)
       printf("Dado a ser inserido no início: ");
       scanf("%d", &inputUser);
 
-      if (!(inserirInicioLista(li, inputUser)))
-        printf("ERRO: Erro ao inserir\n");
+      observerFuncao = inserirInicioLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao inserir", "Falha ao inserir"));
       break;
 
     case 4:
       printf("Dado a ser inserido no final: ");
       scanf("%d", &inputUser);
 
-      if (!(inserirFinalLista(li, inputUser)))
-        printf("ERRO: Erro ao inserir\n");
+      observerFuncao = inserirFinalLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao inserir", "Falha ao inserir"));
       break;
 
     case 5:
       printf("Dado a ser inserido no final: ");
       scanf("%d", &inputUser);
 
-      if (!(inserirOrdenadoLista(li, inputUser)))
-        printf("ERRO: Erro ao inserir\n");
+      observerFuncao = inserirOrdenadoLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao inserir", "Falha ao inserir"));
       break;
 
     case 6:
-      if (!(removerInicioLista(li)))
-        printf("ERRO: Erro ao remover\n");
+      observerFuncao = removerInicioLista(li);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao remover", "Falha ao remover"));
       break;
 
     case 7:
-      if (!(removerFinalLista(li)))
-        printf("ERRO: Erro ao remover\n");
+      observerFuncao = removerFinalLista(li);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao remover", "Falha ao remover"));
       break;
 
     case 8:
       printf("Dado a ser removido: ");
       scanf("%d", &inputUser);
 
-      if (!(removerMeioLista(li, inputUser)))
-        printf("ERRO: Erro ao remover\n");
+      observerFuncao = removerMeioLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Sucesso ao remover", "Falha ao remover"));
       break;
 
     case 9:
       printf("Dado a ser localizado na lista: ");
       scanf("%d", &inputUser);
 
-      if (consultarConteudoLista(li, inputUser))
-      {
-        printf("O dado existe na lista\n");
-      }
-      else
-      {
-        printf("O dado NÃO existe na lista\n");
-      }
-      break;
+      observerFuncao = consultarConteudoLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Valor localizado na lista", "Falha em localizar o valor"));
 
     case 10:
       printf("Posição a ser localizada na lista: ");
       scanf("%d", &inputUser);
 
-      if (consultarPosicaoLista(li, inputUser))
-      {
-        printf("A posição existe na lista\n");
-      }
-      else
-      {
-        printf("A posição NÃO existe na lista\n");
-      }
-      break;
+      observerFuncao = consultarPosicaoLista(li, inputUser);
+      printf("%s\n", logFuncao(observerFuncao, "Posição localizada na lista", "Falha em localizar a posição na lista"));
 
     case 11:
       imprimirLista(li);
       break;
 
     default:
-      printf("ERRO: Seleção inválida\n");
+      printf("ERRO MENU: Seleção inválida\n");
     }
 
     printf("==========================================\n");
