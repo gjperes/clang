@@ -112,6 +112,7 @@ int main(int argc, char **argv)
 
       observerFuncao = consultarConteudoLista(li, inputUser);
       printf("%s\n", logFuncao(observerFuncao, "Valor localizado na lista", "Falha em localizar o valor"));
+      break;
 
     case 10:
       printf("Posição a ser localizada na lista: ");
@@ -119,6 +120,7 @@ int main(int argc, char **argv)
 
       observerFuncao = consultarPosicaoLista(li, inputUser);
       printf("%s\n", logFuncao(observerFuncao, "Posição localizada na lista", "Falha em localizar a posição na lista"));
+      break;
 
     case 11:
       imprimirLista(li);
@@ -128,7 +130,7 @@ int main(int argc, char **argv)
       printf("ERRO MENU: Seleção inválida\n");
     }
 
-    printf("==========================================\n");
+    printf("\n\n==========================================\n");
   } while (operacaoMenu != 12);
 
   printf("Fim da execução\n");
