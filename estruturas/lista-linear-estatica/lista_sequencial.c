@@ -198,12 +198,12 @@ int imprimirLista(Tipo_Lista *lista)
     return 0;
   }
 
-  printf("Imprimindo lista:\n");
+  printf("Imprimindo lista:\n\n");
   printf("===============================\n");
   for (int i = 0; i < lista->fim; i++)
   {
     printf("%d\n", lista->dados[i]);
   }
-  printf("===============================\n");
+  printf("===============================\n\n");
   return 1;
 }
