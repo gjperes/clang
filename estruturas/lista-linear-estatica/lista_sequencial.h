@@ -4,12 +4,10 @@ typedef struct Vetor Tipo_Lista;
 // Tamanho máximo de valores que podem ser armazenados em dado da TAD
 #define MAX_VETOR 5
 
-// TODO: Melhorar a descrição das funções
-
 /** Cria uma nova lista e aloca ela em memória
  *  @return Retorna a nova lista
  */
-Tipo_Lista* criarLista();
+Tipo_Lista *criarLista();
 
 /** Desaloca de memória a lista estática
  * @param lista Lista que será desalocada
