@@ -126,7 +126,7 @@ int removerFinalLista(Tipo_Lista *lista)
   if (verificarListaVazia(lista))
     return 0;
 
-  lista->dados[lista->fim] = 0;
+  lista->dados[lista->fim - 1] = 0;
   lista->fim--;
 
   return 1;
@@ -198,11 +198,12 @@ int imprimirLista(Tipo_Lista *lista)
     return 0;
   }
 
-  printf("Imprimindo lista...\n");
-  for (int i = 0; i <= lista->fim; i++)
+  printf("Imprimindo lista:\n");
+  printf("===============================\n");
+  for (int i = 0; i < lista->fim; i++)
   {
     printf("%d\n", lista->dados[i]);
   }
-
+  printf("===============================\n");
   return 1;
 }
