@@ -140,3 +140,19 @@ int consultarPosicaoLista(Node *noInicial, int posicao, int *retorno) {
     *retorno = aux->dado;
     return 1;
 }
+
+int consultarElementoLista(Node *noInicial, int elemento) {
+    Node *aux;
+    int cont = 0;
+
+    aux = noInicial;
+    while ((aux != NULL) && (aux->dado != elemento)) {
+        aux = aux->prox;
+        cont++;
+    }
+    // Se encontrou o dado, retorna a posição dele, na lista
+    if ((aux->dado == elemento)) {
+        return cont;
+    }
+    return -1;
+}

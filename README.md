@@ -16,7 +16,7 @@ Funções que precisam ser implementadas:
 4. removeFinalLista **OK**
 5. ~~removeMeioLista~~
 6. consultarPosicaoLista **OK**
-7. consultarChaveLista
+7. consultarChaveLista **OK**
 
 Arquivos:
 

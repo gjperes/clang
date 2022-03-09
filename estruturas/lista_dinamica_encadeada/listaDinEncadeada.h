@@ -28,7 +28,7 @@ int verificarTamanhoLista(Node *noInicial);
 int verificarListaVazia(Node *noInicial);
 
 /**
- * Recebe a posição que deseja se verificar
+ * Verifica se na lista existe a posição que o usuário deseja validar
  * @param noInicial Ponteiro que aponta para o primeiro nó
  * @param posicao Posição que deseja se verificar
  * @param retorno Retorna o dado obtido na posição encontrada
@@ -36,4 +36,11 @@ int verificarListaVazia(Node *noInicial);
  */
 int consultarPosicaoLista(Node *noInicial, int posicao, int *retorno);
 
-int consultarElementoLista(Node *noInicial, int elemento, int *retorno);
+
+/**
+ * Verifica se na lista algum nó possui o elemento procurado
+ * @param noInicial Ponteiro que aponta para o primeiro nó
+ * @param elemento Dado que o usuário deseja verificar se existe na lista
+ * @return Posição do elemento na lista, se não possuir, retorna -1
+ */
+int consultarElementoLista(Node *noInicial, int elemento);
