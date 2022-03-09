@@ -6,7 +6,7 @@ Atividades de Linguagem de Programação, assim como exercícios gerais utilizan
 
 Resolver os exercícios semanais da disciplina de Estrutura de Dados I
 
-### 1. Implementar todas as funções de operação essenciais da estrutura: *Lista Linear Simplesmente Encadeada*
+### 1. *Lista Linear Simplesmente Encadeada*
 
 Funções que precisam ser implementadas:
 
@@ -22,7 +22,7 @@ Prazo:
 
 - Até dia 12/03
 
-### 2. Implementar todas as funções de operação essenciais da estrutura: *Lista Linear Simplesmente Encadeada Circular*
+### 2. *Lista Linear Simplesmente Encadeada Circular*
 
 Funções que precisam ser implementadas:
 
