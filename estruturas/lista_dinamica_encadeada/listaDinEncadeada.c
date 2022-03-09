@@ -1,58 +1,76 @@
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include "listaDinEncadeada.h"
 
-struct _Lista {
-    // Dados poderia ser uma struct
-    int dados;
-    struct _Lista *prox;
+struct Bloco {
+    int dado;
+    struct Bloco *prox;
 };
 
-Lista *criaLista() {
-    Lista *novaLista = (Lista *)malloc(sizeof(Lista));
-
-    if (novaLista != NULL) {
-        novaLista = NULL;
-    }
-
-    return novaLista;
+void iniciaLista(Node **noInicial) {
+    *noInicial = NULL;
 }
 
-void liberaLista(Lista **li) {
-    if (*li != NULL) {
-        Lista *aux;
+Node *criaNode() {
+    Node *novoNo;
 
-        while ((*li) != NULL) {
-            aux = *li;
-            *li = (*li)->prox;
-            free(aux);
+    novoNo = (Node *) malloc(sizeof(Node));
+
+    if (!novoNo) {
+        printf("Impossível alocar, erro!\n");
+        exit(1);
+    }
+
+    novoNo->prox = NULL;
+    return novoNo;
+}
+
+void insereFinalLista(Node **noInicial, int num) {
+    Node *novoNo = criaNode();
+    Node *aux;
+
+    novoNo->dado = num;
+
+    if (*noInicial == NULL) {
+        *noInicial = novoNo;
+    } else {
+        aux = *noInicial;
+        while (aux->prox != NULL) {
+            aux = aux->prox;
         }
-
-        free(li);
+        aux->prox = novoNo;
     }
 }
 
-int verificaListaVazia(Lista **li) {
-    if (li == NULL)
-        return 1;
-    if (*li == NULL)
-        return 1;
-    return 0;
+void insereInicioLista(Node **noInicial, int num) {
+    Node *novoNo = criaNode();
+
+    novoNo->dado = num;
+    novoNo->prox = *noInicial;
+    *noInicial = novoNo;
 }
 
-int verificaTamanhoLista(Lista **li) {
-    if (li == NULL)
-        return 0;
+int removeInicioLista(Node **noInicial, int *retorno) {
+    Node *aux;
 
-    int contador = 0;
-    Lista *node = *li;
+    if (*noInicial == NULL) return 0;
 
-    while (node != NULL) {
-        contador++;
-        node = &(*node)->prox;
+    aux = *noInicial;
+    *retorno = (*noInicial)->dado;
+    *noInicial = (*noInicial)->prox;
+
+    free(aux);
+    return 1;
+}
+
+void imprimirLista(Node *noInicial) {
+    Node *aux;
+
+    if (noInicial == NULL) {
+        printf("\nLista vazia\n");
+    } else {
+        for (aux = noInicial; aux != NULL; aux = aux->prox) {
+            printf("%d\n", aux->dado);
+        }
     }
-
-    return contador;
 }
