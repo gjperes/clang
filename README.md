@@ -20,9 +20,9 @@ Funções que precisam ser implementadas:
 
 Arquivos:
 
-- main.c [Falta implementar as novas opções]
-- listaDinEncadeada.h [Implementando]
-- listaDinEncadeada.c [Implementando]
+- main.c: **Implementado novas funções**
+- listaDinEncadeada.h: **OK**
+- listaDinEncadeada.c: **TESTAR**
 
 Prazo:
 
@@ -36,9 +36,9 @@ Funções que precisam ser implementadas:
 
 Arquivos:
 
-- main.c [TO DO]
-- listaCircular.h [TO DO]
-- listaCircular.c [TO DO]
+- main.c: TO DO
+- listaCircular.h: TO DO
+- listaCircular.c: TO DO
 
 Prazo:
 
