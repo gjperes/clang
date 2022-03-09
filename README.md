@@ -2,6 +2,41 @@
 
 Atividades de Linguagem de Programação, assim como exercícios gerais utilizando a linguagem C
 
+## Objetivo Atual
+
+Resolver os exercícios semanais da disciplina de Estrutura de Dados I
+
+### 1. Implementar todas as funções de operação essenciais da estrutura: *Lista Linear Simplesmente Encadeada*
+
+Funções que precisam ser implementadas:
+
+- Todas
+
+Arquivos:
+
+- main.c [TO DO]
+- listaDinEncadeada.h [TO DO]
+- listaDinEncadeada.c [TO DO]
+
+Prazo:
+
+- Até dia 12/03
+
+### 2. Implementar todas as funções de operação essenciais da estrutura: *Lista Linear Simplesmente Encadeada Circular*
+
+Funções que precisam ser implementadas:
+
+- Todas
+
+Arquivos:
+
+- main.c [TO DO]
+- listaCircular.h [TO DO]
+- listaCircular.c [TO DO]
+
+Prazo:
+
+- Até dia 15/03
 
 ## Ferramentas
 
