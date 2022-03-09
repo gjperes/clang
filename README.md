@@ -10,13 +10,21 @@ Resolver os exercícios semanais da disciplina de Estrutura de Dados I
 
 Funções que precisam ser implementadas:
 
-- Todas
+1. liberaLista
+2. tamanhoLista
+3. verificaListaCheia
+4. verificaListaVazia
+5. insereMeioLista
+6. removeFinalLista
+7. removeMeioLista
+8. consultarPosicaoLista
+9. consultarChaveLista
 
 Arquivos:
 
-- main.c [TO DO]
-- listaDinEncadeada.h [TO DO]
-- listaDinEncadeada.c [TO DO]
+- main.c [Básico OK]
+- listaDinEncadeada.h [Básico OK]
+- listaDinEncadeada.c [Básico OK]
 
 Prazo:
 
