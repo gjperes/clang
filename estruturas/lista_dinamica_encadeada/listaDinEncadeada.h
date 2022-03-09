@@ -19,6 +19,21 @@ void inserirInicioLista(Node **noInicial, int num);
  */
 int removerInicioLista(Node **noInicial, int *retorno);
 
+int removerFinalLista(Node **noInicial, int *retorno);
+
 void imprimirLista(Node *noInicial);
 
 int verificarTamanhoLista(Node *noInicial);
+
+int verificarListaVazia(Node *noInicial);
+
+/**
+ * Recebe a posição que deseja se verificar
+ * @param noInicial Ponteiro que aponta para o primeiro nó
+ * @param posicao Posição que deseja se verificar
+ * @param retorno Retorna o dado obtido na posição encontrada
+ * @return Bool -> Se tiver sucesso em acessar a posição desejada: True; else: False
+ */
+int consultarPosicaoLista(Node *noInicial, int posicao, int *retorno);
+
+int consultarElementoLista(Node *noInicial, int elemento, int *retorno);

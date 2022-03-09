@@ -61,9 +61,9 @@ void inserirInicioLista(Node **noInicial, int num) {
 }
 
 int removerInicioLista(Node **noInicial, int *retorno) {
-    Node *aux;
-
     if (*noInicial == NULL) return 0;
+
+    Node *aux;
 
     aux = *noInicial;
     *retorno = (*noInicial)->dado;
@@ -89,8 +89,54 @@ int verificarTamanhoLista(Node *noInicial) {
     Node *aux;
     int cont;
 
-    if(*noInicial == NULL) return 0;
+    if (*noInicial == NULL) return 0;
 
-    for (cont = 0, aux = *noInicial; aux != NULL ; aux = aux->prox, ++cont);
+    for (cont = 0, aux = *noInicial; aux != NULL; aux = aux->prox, ++cont);
     return cont;
+}
+
+int verificarListaVazia(Node *noInicial) {
+    if (noInicial == NULL) return 1;
+    return 0;
+}
+
+int removerFinalLista(Node **noInicial, int *retorno) {
+    if (*noInicial == NULL) return 0;
+    if ((*noInicial)->prox == NULL) {
+        free(*noInicial);
+        return 1;
+    }
+
+    Node *aux, *auxRemover;
+    aux = *noInicial;
+
+    // Coloca o *aux no penúltimo elemento da lista
+    while (aux->prox != NULL) {
+        aux = aux->prox;
+    }
+
+    // auxRemover passa a apontar pro último elemento
+    auxRemover = aux->prox;
+    // Libera o último
+    free(auxRemover);
+    // O penúltimo passa a apontar pra NULL
+    aux->prox = NULL;
+
+    return 1;
+}
+
+int consultarPosicaoLista(Node *noInicial, int posicao, int *retorno) {
+    Node *aux;
+    int cont = 0;
+
+    aux = noInicial;
+    while ((aux != NULL) && (cont < posicao)) {
+        aux = aux->prox;
+        cont++;
+    }
+    if (aux == NULL) {
+        return 0;
+    }
+    *retorno = aux->dado;
+    return 1;
 }
