@@ -1,15 +1,15 @@
 // ED **Lista
 typedef struct Bloco Node;
 
-void iniciaLista(Node **noInicial);
+void iniciarLista(Node **noInicial);
 
-void liberaLista(Node **noInicial);
+void liberarLista(Node **noInicial);
 
 Node *criaNode();
 
-void insereFinalLista(Node **noInicial, int num);
+void inserirFinalLista(Node **noInicial, int num);
 
-void insereInicioLista(Node **noInicial, int num);
+void inserirInicioLista(Node **noInicial, int num);
 
 /**
  * Remove um item do início da lista, retorna bool e salva o dado removido em uma variável global
@@ -17,6 +17,8 @@ void insereInicioLista(Node **noInicial, int num);
  * @param retorno Valor removido
  * @return Boolean: sucesso ou não da operação
  */
-int removeInicioLista(Node **noInicial, int *retorno);
+int removerInicioLista(Node **noInicial, int *retorno);
 
 void imprimirLista(Node *noInicial);
+
+int verificarTamanhoLista(Node *noInicial);

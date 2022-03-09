@@ -10,15 +10,14 @@ Resolver os exercícios semanais da disciplina de Estrutura de Dados I
 
 Funções que precisam ser implementadas:
 
-1. liberaLista
-2. tamanhoLista
-3. verificaListaCheia
-4. verificaListaVazia
-5. insereMeioLista
-6. removeFinalLista
-7. removeMeioLista
-8. consultarPosicaoLista
-9. consultarChaveLista
+1. tamanhoLista **OK**
+2. verificaListaCheia
+3. verificaListaVazia
+4. insereMeioLista
+5. removeFinalLista
+6. removeMeioLista
+7. consultarPosicaoLista
+8. consultarChaveLista
 
 Arquivos:
 

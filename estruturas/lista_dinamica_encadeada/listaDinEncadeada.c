@@ -7,11 +7,11 @@ struct Bloco {
     struct Bloco *prox;
 };
 
-void iniciaLista(Node **noInicial) {
+void iniciarLista(Node **noInicial) {
     *noInicial = NULL;
 }
 
-void liberaLista(Node **noInicial) {
+void liberarLista(Node **noInicial) {
     Node *aux;
 
     while (*noInicial != NULL) {
@@ -35,7 +35,7 @@ Node *criaNode() {
     return novoNo;
 }
 
-void insereFinalLista(Node **noInicial, int num) {
+void inserirFinalLista(Node **noInicial, int num) {
     Node *novoNo = criaNode();
     Node *aux;
 
@@ -52,7 +52,7 @@ void insereFinalLista(Node **noInicial, int num) {
     }
 }
 
-void insereInicioLista(Node **noInicial, int num) {
+void inserirInicioLista(Node **noInicial, int num) {
     Node *novoNo = criaNode();
 
     novoNo->dado = num;
@@ -60,7 +60,7 @@ void insereInicioLista(Node **noInicial, int num) {
     *noInicial = novoNo;
 }
 
-int removeInicioLista(Node **noInicial, int *retorno) {
+int removerInicioLista(Node **noInicial, int *retorno) {
     Node *aux;
 
     if (*noInicial == NULL) return 0;
@@ -83,4 +83,14 @@ void imprimirLista(Node *noInicial) {
             printf("%d\n", aux->dado);
         }
     }
+}
+
+int verificarTamanhoLista(Node *noInicial) {
+    Node *aux;
+    int cont;
+
+    if(*noInicial == NULL) return 0;
+
+    for (cont = 0, aux = *noInicial; aux != NULL ; aux = aux->prox, ++cont);
+    return cont;
 }
