@@ -11,6 +11,16 @@ void iniciaLista(Node **noInicial) {
     *noInicial = NULL;
 }
 
+void liberaLista(Node **noInicial) {
+    Node *aux;
+
+    while (*noInicial != NULL) {
+        aux = *noInicial;
+        *noInicial = (*noInicial)->prox;
+        free(aux);
+    }
+}
+
 Node *criaNode() {
     Node *novoNo;
 

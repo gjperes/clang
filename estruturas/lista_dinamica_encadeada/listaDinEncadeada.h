@@ -1,7 +1,9 @@
 // ED **Lista
 typedef struct Bloco Node;
 
-void iniciaLista(Node **no);
+void iniciaLista(Node **noInicial);
+
+void liberaLista(Node **noInicial);
 
 Node *criaNode();
 
