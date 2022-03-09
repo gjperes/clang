@@ -20,9 +20,9 @@ Funções que precisam ser implementadas:
 
 Arquivos:
 
-- main.c [Básico OK]
-- listaDinEncadeada.h [Básico OK]
-- listaDinEncadeada.c [Básico OK]
+- main.c [Falta implementar as novas opções]
+- listaDinEncadeada.h [Implementando]
+- listaDinEncadeada.c [Implementando]
 
 Prazo:
 

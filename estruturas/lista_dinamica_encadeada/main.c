@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "listaDinEncadeada.h"
 
-void imprimeMenu() {
+void imprimirMenu() {
     printf("\n1. Insere no fim da Lista\n");
     printf("2. Insere no inicio da Lista\n");
     printf("3. Exclui do inicio da Lista\n");
@@ -14,25 +14,25 @@ int main(int argc, char *argv[]) {
     Node *MyList;
     int menu, valor;
 
-    iniciaLista(&MyList);
+    iniciarLista(&MyList);
 
     do {
-        imprimeMenu();
+        imprimirMenu();
         scanf("%d", &menu);
 
         switch (menu) {
             case 1:
                 printf("Informe o valor a ser inserido no final da lista: ");
                 scanf("%d", &valor);
-                insereFinalLista(&MyList, valor);
+                inserirFinalLista(&MyList, valor);
                 break;
             case 2:
                 printf("Informe o valor a ser inserido no inicio da lista: ");
                 scanf("%d", &valor);
-                insereInicioLista(&MyList, valor);
+                inserirInicioLista(&MyList, valor);
                 break;
             case 3:
-                if(removeInicioLista(&MyList, &valor) == 0)
+                if(removerInicioLista(&MyList, &valor) == 0)
                     printf("A lista está vazia!!\n");
                 else
                     printf("O valor excluído do inicio da lista foi: %d\n", valor);
@@ -42,6 +42,10 @@ int main(int argc, char *argv[]) {
                 break;
             case 5:
                 printf("\nSaindo do programa!\n");
+                break;
+            case 6:
+                liberarLista(&MyList);
+                imprimirLista(MyList);
                 break;
             default:
                 printf("Opção Inválida!\n");
