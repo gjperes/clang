@@ -89,9 +89,9 @@ int verificarTamanhoLista(Node *noInicial) {
     Node *aux;
     int cont;
 
-    if (*noInicial == NULL) return 0;
+    if (noInicial == NULL) return 0;
 
-    for (cont = 0, aux = *noInicial; aux != NULL; aux = aux->prox, ++cont);
+    for (cont = 0, aux = noInicial; aux != NULL; aux = aux->prox, ++cont);
     return cont;
 }
 
@@ -129,6 +129,8 @@ int consultarPosicaoLista(Node *noInicial, int posicao, int *retorno) {
     Node *aux;
     int cont = 0;
 
+    if (posicao < 0) return 0;
+
     aux = noInicial;
     while ((aux != NULL) && (cont < posicao)) {
         aux = aux->prox;
@@ -150,8 +152,9 @@ int consultarElementoLista(Node *noInicial, int elemento) {
         aux = aux->prox;
         cont++;
     }
+    if (aux == NULL) return -1;
     // Se encontrou o dado, retorna a posição dele, na lista
-    if ((aux->dado == elemento)) {
+    if (aux->dado == elemento) {
         return cont;
     }
     return -1;
