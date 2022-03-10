@@ -20,9 +20,9 @@ Funções que precisam ser implementadas:
 
 Arquivos:
 
-- main.c: **Implementado novas funções**
+- main.c: **OK**
 - listaDinEncadeada.h: **OK**
-- listaDinEncadeada.c: **TESTAR**
+- listaDinEncadeada.c: **OK**
 
 Prazo:
 
