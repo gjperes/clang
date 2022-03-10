@@ -6,29 +6,7 @@ Atividades de Linguagem de Programação, assim como exercícios gerais utilizan
 
 Resolver os exercícios semanais da disciplina de Estrutura de Dados I
 
-### 1. *Lista Linear Simplesmente Encadeada*
-
-Funções que precisam ser implementadas:
-
-1. tamanhoLista **OK**
-2. verificaListaVazia **OK**
-3. ~~insereMeioLista~~
-4. removeFinalLista **OK**
-5. ~~removeMeioLista~~
-6. consultarPosicaoLista **OK**
-7. consultarChaveLista **OK**
-
-Arquivos:
-
-- main.c: **OK**
-- listaDinEncadeada.h: **OK**
-- listaDinEncadeada.c: **OK**
-
-Prazo:
-
-- Até dia 12/03
-
-### 2. *Lista Linear Simplesmente Encadeada Circular*
+### *Lista Linear Simplesmente Encadeada Circular*
 
 Funções que precisam ser implementadas:
 
