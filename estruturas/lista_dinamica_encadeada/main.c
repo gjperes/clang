@@ -92,5 +92,7 @@ int main(int argc, char *argv[]) {
         }
     } while(menu != 0);
 
+    liberarLista(&MyList);
+
     return 0;
 }
