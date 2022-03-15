@@ -12,6 +12,10 @@ struct _Cabecalho {
     NodeSoldado *primeiroNode;
 };
 
+void inicializaLista(Cabecalho *Lista) {
+    Lista->primeiroNode = NULL;
+}
+
 // Cria um nó e retorna ele na função OK
 NodeSoldado* criarNode() {
     NodeSoldado *novoNode;

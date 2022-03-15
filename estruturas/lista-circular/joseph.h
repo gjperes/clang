@@ -7,11 +7,11 @@ typedef struct _NodeSoldado NodeSoldado;
 typedef struct _Cabecalho Cabecalho;
 
 NodeSoldado* criarNode();
-void inicializaLista(NodeSoldado **primeiroNode);
-void inserirSoldado(NodeSoldado **primeiroNode, char[TAM_NOME] nomeSoldado);
-int removerSoldado(NodeSoldado **primeiroNode, char[TAM_NOME] nomeSoldado);
+void inicializaLista(Cabecalho *Lista);
+void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
+int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
 
 // libera forçadamente a lista se não remover tudo
-void liberaLista(NodeSoldado **primeiroNode); 
+void liberaLista(Cabecalho *Lista); 
 
 #endif //CLANG_JOSEPH_H
