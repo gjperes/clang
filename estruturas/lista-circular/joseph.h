@@ -1,7 +1,7 @@
 #ifndef CLANG_JOSEPH_H
 #define CLANG_JOSEPH_H
 
-#define TAM_NOME 50;
+#define TAM_NOME 1;
 
 typedef struct _NodeSoldado NodeSoldado;
 typedef struct _Cabecalho Cabecalho;
