@@ -2,21 +2,11 @@
 #include <stdlib.h>
 #include "joseph.h"
 
-struct _NodeSoldado {
-    char dado[TAM_NOME];
-    struct _NodeSoldado *prox;
-};
-
-struct _Cabecalho {
-    int tamanhoLista;
-    NodeSoldado *primeiroNode;
-};
-
-void inicializaLista(Cabecalho *Lista) {
+void inicializaLista(Header *Lista) {
     Lista->primeiroNode = NULL;
 }
 
-// Cria um nó e retorna ele na função OK
+// Cria um nó e retorna ele na função [OK]
 NodeSoldado* criarNode() {
     NodeSoldado *novoNode;
     novoNode = (NodeSoldado *)malloc(sizeof(NodeSoldado));
@@ -29,8 +19,8 @@ NodeSoldado* criarNode() {
     return novoNode;
 }
 
-// ok
-void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
+// Insere o nó Soldado na lista [OK]
+void inserirSoldado(Header *Lista, char nomeSoldado[TAM_NOME]) {
     NodeSoldado *novoSoldado = criarNode();
 
     novoSoldado->dado[0] = nomeSoldado[0];
@@ -54,9 +44,14 @@ void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     Lista->tamanhoLista++;
 }
 
-// ok -> boa sorte pra entender ;)
-int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
+// Remove o nó de um Soldado da lista, retorna Bool informando sucesso ou não na remoção [OK]
+int removerSoldado(Header *Lista, char nomeSoldado[TAM_NOME]) {
     if(Lista->primeiroNode == NULL) return 0;
+    if(Lista->tamanhoLista == 1) {
+        printf("Exception: A lista contém apenas o último soldado, "
+               "que deve ser removido manualmente pelo programa!\n");
+        return 0;
+    }
 
     NodeSoldado *aux, *proxAux;
 
@@ -64,11 +59,14 @@ int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     while((aux->prox)->dado != nomeSoldado) {
         aux = aux->prox;
     }
-    proxAux = aux->prox;
-    aux->prox = proxAux->prox;
+    proxAux = aux->prox; // posição em memória do nó que será removido
+    aux->prox = proxAux->prox; // posição em memória anterior ao nó que será removido
 
-    if(proxAux == Lista->primeiroNode)
+    // Se o nó que será removido for o mesmo do início da lista,
+    // pegamos o nó apontado de próx e definimos ele como começo da lista
+    if(proxAux == Lista->primeiroNode) {
         Lista->primeiroNode = proxAux->prox;
+    }
 
     free(proxAux);
 

@@ -1,12 +1,20 @@
 #define TAM_NOME 1
+#define MAX_SOLDADOS 5
 
-typedef struct _NodeSoldado NodeSoldado;
-typedef struct _Cabecalho Cabecalho;
+typedef struct _NodeSoldado {
+    char dado[TAM_NOME];
+    struct _NodeSoldado *prox;
+} NodeSoldado;
 
-void inicializaLista(Cabecalho *Lista);
+typedef struct _Header {
+    int tamanhoLista;
+    NodeSoldado *primeiroNode;
+} Header;
+
+void inicializaLista(Header *Lista);
 NodeSoldado* criarNode();
-void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
-int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
+void inserirSoldado(Header *Lista, char nomeSoldado[TAM_NOME]);
+int removerSoldado(Header *Lista, char nomeSoldado[TAM_NOME]);
 
 // libera forçadamente a lista se não remover tudo
-void liberaLista(Cabecalho *Lista);
+void liberaLista(Header *Lista);
