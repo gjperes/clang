@@ -54,6 +54,7 @@ void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     Lista->tamanhoLista++;
 }
 
+// ok -> boa sorte pra entender ;)
 int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     if(Lista->primeiroNode == NULL) return 0;
 
@@ -67,42 +68,10 @@ int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     aux->prox = proxAux->prox;
 
     if(proxAux == Lista->primeiroNode)
-        primeiroNode = proxAux->prox;
+        Lista->primeiroNode = proxAux->prox;
 
     free(proxAux);
 
     Lista->tamanhoLista--;
+    return 1;
 }
-
-// // TODO ANTIGO - REVER
-// void definirSoldado(Node **soldados, char *nomeInicial, int contagem) {
-//     int contador = 0;
-//     Node *aux;
-
-//     aux = *soldados;
-
-//     while(aux->prox != *soldados) {
-//         aux = aux->prox;
-//         contador++;
-//     }
-
-//     while(contador > 1) {
-//         aux = *soldados;
-
-//         // Cara pode digitar um nome que não existe
-//         while(aux->dado != nomeInicial) {
-//             aux = aux->prox;
-//         }
-
-//         for(int x = 0; x < contagem - 1; x++)
-//         {
-//             aux = aux->prox;
-//         }
-
-//         nomeInicial = (aux->prox)->dado;
-//         printf("%c\n", removerSoldado(aux, aux->prox));
-
-//         aux-1 aux  aux+1//Remover
-
-//     }
-// }
