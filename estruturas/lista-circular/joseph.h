@@ -6,8 +6,8 @@
 typedef struct _NodeSoldado NodeSoldado;
 typedef struct _Cabecalho Cabecalho;
 
-NodeSoldado* criarNode();
 void inicializaLista(Cabecalho *Lista);
+NodeSoldado* criarNode();
 void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
 int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]);
 

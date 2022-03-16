@@ -29,6 +29,28 @@ NodeSoldado* criarNode() {
     return novoNode;
 }
 
+void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
+    NodeSoldado *novoSoldado = criarNode();
+
+    novoSoldado->dado = nomeSoldado;
+
+    if(Lista->primeiroNode == NULL) {
+        Lista->primeiroNode = novoSoldado;
+        novoSoldado->prox = Lista->primeiroNode;
+        Lista->tamanhoLista++;
+    } else {
+        NodeSoldado *aux;
+
+        aux = Lista->primeiroNode;
+
+        while(aux->prox != Lista->primeiroNode) {
+            aux = aux->prox;
+        }
+
+        aux->prox = novoSoldado;
+        novoSoldado->prox = Lista->primeiroNode;
+    }
+}
 
 
 // // Gera a lista de soldados a partir de uma string - ANTIGO REVER
