@@ -29,6 +29,7 @@ NodeSoldado* criarNode() {
     return novoNode;
 }
 
+// ok
 void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     NodeSoldado *novoSoldado = criarNode();
 
@@ -37,7 +38,6 @@ void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     if(Lista->primeiroNode == NULL) {
         Lista->primeiroNode = novoSoldado;
         novoSoldado->prox = Lista->primeiroNode;
-        Lista->tamanhoLista++;
     } else {
         NodeSoldado *aux;
 
@@ -50,35 +50,29 @@ void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
         aux->prox = novoSoldado;
         novoSoldado->prox = Lista->primeiroNode;
     }
+    
+    Lista->tamanhoLista++;
 }
 
+int removerSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
+    if(Lista->primeiroNode == NULL) return 0;
 
-// // Gera a lista de soldados a partir de uma string - ANTIGO REVER
-// void criarListaSoldados(char *nomes, Node **soldados) {
-//     for(int i = 0; i < nomes[i + 1] != '\0'; i++) {
-//         Node *novoSoldado;
+    NodeSoldado *aux, *proxAux;
 
-//         novoSoldado = criarSoldado();
-//         novoSoldado->dado = nomes[i];
+    aux = Lista->primeiroNode;
+    while((aux->prox)->dado != nomeSoldado) {
+        aux = aux->prox;
+    }
+    proxAux = aux->prox;
+    aux->prox = proxAux->prox;
 
-//         // Se a lista de soldados estiver vazia, faça
-//         if(*soldados == NULL) {
-//             soldado->prox = soldado;
-//             *soldados = soldado; // Define o ponteiro que marca o início da lista para esse novo nó
-//         } else {
-//             Nodo *aux;
+    if(proxAux == Lista->primeiroNode)
+        primeiroNode = proxAux->prox;
 
-//             aux = *soldados;
-//             // aux inicializado no primeiro nó da lista, percorre até o último nó
-//             while(aux->prox != *soldados) {
-//                 aux = aux->prox;
-//             }
-//             // no último nó, aponta para o novo nó criado, que por sua vez, aponta para o início (circular)
-//             aux->prox = soldado;
-//             soldado->prox = *soldados;
-//         }
-//     }
-// }
+    free(proxAux);
+
+    Lista->tamanhoLista--;
+}
 
 // // TODO ANTIGO - REVER
 // void definirSoldado(Node **soldados, char *nomeInicial, int contagem) {
