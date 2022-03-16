@@ -3,12 +3,12 @@
 #include "joseph.h"
 
 struct _NodeSoldado {
-    char dado[50];
+    char dado[TAM_NOME];
     struct _NodeSoldado *prox;
 };
 
 struct _Cabecalho {
-    int tamanhoLista = 0;
+    int tamanhoLista;
     NodeSoldado *primeiroNode;
 };
 
@@ -19,7 +19,7 @@ void inicializaLista(Cabecalho *Lista) {
 // Cria um nó e retorna ele na função OK
 NodeSoldado* criarNode() {
     NodeSoldado *novoNode;
-    novoNode = (Node *)malloc(sizeof(Node));
+    novoNode = (NodeSoldado *)malloc(sizeof(NodeSoldado));
 
     if(!novoNode) {
         printf("Problema de alocação\n");
@@ -33,7 +33,7 @@ NodeSoldado* criarNode() {
 void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
     NodeSoldado *novoSoldado = criarNode();
 
-    novoSoldado->dado = nomeSoldado;
+    novoSoldado->dado[0] = nomeSoldado[0];
 
     if(Lista->primeiroNode == NULL) {
         Lista->primeiroNode = novoSoldado;
@@ -50,7 +50,7 @@ void inserirSoldado(Cabecalho *Lista, char nomeSoldado[TAM_NOME]) {
         aux->prox = novoSoldado;
         novoSoldado->prox = Lista->primeiroNode;
     }
-    
+
     Lista->tamanhoLista++;
 }
 
