@@ -8,11 +8,11 @@ typedef struct _Header {
     Node *primeiroNode, *ultimoNode;
 } Header;
 
-Node criaNode();
-void inserirInicioLista(Header *Lista, int dado);
-void inserirFinalLista(Header *Lista, int dado);
-int removerInicioLista(Header *Lista);
-int removerFinalLista(Header *Lista);
-void imprimirLista(Header *Lista);
-void liberarLista(Header *Lista);
+Node cria_node();
+int inserir_inicio_lista(Header *Lista, int dado);
+int inserir_final_lista(Header *Lista, int dado);
+int remover_inicio_lista(Header *Lista);
+int remover_final_lista(Header *Lista);
+void imprimir_lista(Header *Lista);
+void liberar_lista(Header *Lista);
 
