@@ -1,6 +1,12 @@
 #include "listaDuplamente.h"
 #include <stdlib.h>
 
+void iniciar_header(Header *Lista) {
+    Lista->primeiroNode = NULL;
+    Lista->ultimoNode = NULL;
+    Lista->tamanhoLista = 0;
+}
+
 Node cria_node() {
     Node *novo = NULL;
 
@@ -33,13 +39,15 @@ int inserir_inicio_lista(Header *Lista, int dado) {
     novo->ant = NULL;
 
     // Se não for o primeiro elemento da lista:
-    if (Lista->primeiroNode != NULL) {
+    if (Lista->tamanhoLista != 0) {
+        // O antigo primeiro passa a ter como nó anterior o novo nó
         (Lista->primeiroNode)->ant = novo;
     } else {
+        // No caso de ser o primeiro elemento, ele também é o último
         Lista->ultimoNode = novo;
     }
 
-    // A lista passa a apontar pra esse novo elemento
+    // O início da lista passa a apontar para esse novo elemento inserido no início
     Lista->primeiroNode = novo;
     Lista->tamanhoLista += 1;
 
@@ -53,12 +61,16 @@ int inserir_final_lista(Header *Lista, int dado) {
     novo->prox = NULL;
     novo->ant = Lista->ultimoNode;
 
-    if(Lista->ultimoNode != NULL) {
+    // Se não for o primeiro elemento da lista:
+    if(Lista->tamanhoLista != 0) {
+        // O antigo último elemento passa a apontar para o novo nó
         (Lista->ultimoNode)->prox = novo;
     } else {
+        // Caso seja o único elemento da lista, também é o primeiro
         Lista->primeiroNode = novo;
     }
 
+    // O último nó aponta para esse novo elemento no final da lista
     Lista->ultimoNode = novo;
     Lista->tamanhoLista += 1;
 
@@ -66,5 +78,6 @@ int inserir_final_lista(Header *Lista, int dado) {
 }
 
 int remover_inicio_lista(Header *Lista) {
+    if (Lista->tamanhoLista == 0) return 0;
 
 }
