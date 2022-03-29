@@ -8,7 +8,6 @@ typedef struct _Header {
     Node *primeiroNode, *ultimoNode;
 } Header;
 
-void inicializaLista(Header *Lista);
 Node criaNode();
 void inserirInicioLista(Header *Lista, int dado);
 void inserirFinalLista(Header *Lista, int dado);
