@@ -8,7 +8,7 @@ void iniciar_header(Header *Lista) {
     Lista->tamanhoLista = 0;
 }
 
-Node cria_node() {
+Node *cria_node() {
     Node *novo = NULL;
 
     novo = (Node *) malloc(sizeof(Node));
