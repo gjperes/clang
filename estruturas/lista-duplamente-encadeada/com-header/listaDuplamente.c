@@ -79,38 +79,41 @@ int inserir_final_lista(Header *Lista, int dado) {
 }
 
 int remover_inicio_lista(Header *Lista) {
-    if (Lista->tamanhoLista == 0) return 0;
-    Node *aux = NULL;
+    if (Lista == NULL) return 0;
+    if (Lista->primeiroNode == NULL) return 0;
 
-    // Se for o único nó da lista, limpa o ponteiro ultimoNode
-    if (Lista->tamanhoLista == 1) {
+    Node *aux = Lista->primeiroNode;
+
+    Lista->primeiroNode = aux->prox;
+    free(aux);
+
+    // Se era o último node, último também vira NULL
+    if (Lista->primeiroNode == NULL) {
         Lista->ultimoNode = NULL;
     }
 
-    aux = Lista->primeiroNode;
-
-    // Se for o único elemento, o primeiroNode irá apontar para NULL, sem problema!
-    Lista->primeiroNode = (Lista->primeiroNode)->prox;
-
-    free(aux);
     Lista->tamanhoLista = Lista->tamanhoLista - 1;
 
     return 1;
 }
 
 int remover_final_lista(Header *Lista) {
-    if (Lista->tamanhoLista == 0) return 0;
-    Node *aux = NULL;
+    if (Lista == NULL) return 0;
+    if (Lista->primeiroNode == NULL) return 0;
 
-    // Se for o único nó da lista, limpa o ponteiro primeiroNode
-    if (Lista->tamanhoLista == 1) {
+    Node *aux = Lista->ultimoNode;
+    Node *anterior = NULL;
+
+    // Se não for o último nó:
+    if (aux != Lista->primeiroNode) {
+        anterior = aux->ant;
+        anterior->prox = aux->prox;
+        Lista->ultimoNode = anterior;
+    } else {
+        // Se for o último nó:
         Lista->primeiroNode = NULL;
+        Lista->ultimoNode = NULL;
     }
-
-    aux = Lista->ultimoNode;
-
-    // Se for o único elemento, o ultimoNode->ant irá apontar para NULL, sem problema!
-    Lista->ultimoNode = (Lista->ultimoNode)->ant;
 
     free(aux);
     Lista->tamanhoLista = Lista->tamanhoLista - 1;
@@ -121,12 +124,12 @@ int remover_final_lista(Header *Lista) {
 void imprimir_lista(Header *Lista) {
     printf("Imprimindo lista...\n");
 
-    if(Lista->tamanhoLista == 0) {
+    if (Lista->tamanhoLista == 0) {
         printf("Lista vazia!\n");
     } else {
         Node *aux = Lista->primeiroNode;
 
-        while(aux != NULL) {
+        while (aux != NULL) {
             printf("DADO=%d\n", aux->dado);
             aux = aux->prox;
         }
