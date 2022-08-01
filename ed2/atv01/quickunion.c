@@ -54,7 +54,8 @@ int find_UF(UF * uf, int p) {
 }
 
 void union_UF(UF * uf, int p, int q) {
-  uf->id[p] = find_UF(uf, q);
+  int raiz_p = find_UF(uf, p);
+  uf->id[raiz_p] = find_UF(uf, q);
   uf->n--;
   
   return;
