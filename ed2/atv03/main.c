@@ -98,7 +98,10 @@ t_timetable *new_timetable()
 }
 
 // insere par key-value na tabela (remove elemento se valor for null)
-void put(t_time key, char * val);
+void put(t_time key, char *val, linked_list *lista)
+{
+  t_timetable *aux = lista->data;
+}
 
 // valor armazenado com a chave key (null se key não existe)
 char* get(t_time key);
@@ -107,13 +110,31 @@ char* get(t_time key);
 void delete(t_time key);
 
 // existe um valor com a chave key?
-int contains(t_time key);
+int contains(linked_list *lista, t_time key)
+{ 
+  t_timetable *aux = lista->data;
+
+  while (aux != NULL && time_cmp(key, aux->key) != 0) {
+    aux = aux->prox;
+  }
+
+  // Caso encontre o valor na lista, retorna true
+  if (aux != NULL) return 1;
+  return 0;
+}
 
 // a tabela está vazia?
-int is_empty();
+int is_empty(linked_list lista)
+{
+  if (lista.size == 0) return 1;
+  return 0;
+}
 
 // número de pares key-value armazenados na tabela
-int size();
+int size(linked_list lista)
+{
+  return lista.size;
+}
 
 // menor chave armazenada
 t_time min();
