@@ -41,9 +41,16 @@ Arvore* arv_libera (Arvore* a) {
 }
 
 void arv_imprime (Arvore* a) {
-  printf("%c ", a->info);
-  if (!verifica_arv_vazia(a->esq)) arv_imprime(a->esq);
-  if (!verifica_arv_vazia(a->dir)) arv_imprime(a->dir);
+  printf("< %c ", a->info);
+  if (!verifica_arv_vazia(a->esq)) 
+    arv_imprime(a->esq);
+  else
+    printf("< > ");
+  if (!verifica_arv_vazia(a->dir)) 
+    arv_imprime(a->dir);
+  else
+    printf("< > ");
+  printf("> ");
 }
 
 int main (int argc, char *argv[]) {
