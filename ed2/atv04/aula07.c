@@ -3,31 +3,31 @@
 #include <math.h>
 
 typedef struct arvore {
-  int info;
+  char info;
   struct arvore *esq;
   struct arvore *dir;
 } Arvore;
 
-
 Arvore*  cria_arv_vazia (void);
-Arvore*  arv_constroi (int n, Arvore* e, Arvore* d);
+Arvore*  arv_constroi (char c, Arvore* e, Arvore* d);
 int      verifica_arv_vazia (Arvore* a);
 Arvore*  arv_libera (Arvore* a);
-int      arv_pertence (Arvore* a, int n);
+char     arv_pertence (Arvore* a, char c);
 void     arv_imprime (Arvore* a);
 int      conta_nos(Arvore a);
 int      max_arvore(Arvore a);
 int      altura_arvore(Arvore *a);
 int      nos_folha_arvore(Arvore *a);
-
+int      eh_espelho(Arvore * arv_a, Arvore * arv_b);
+Arvore*  cria_espelho(Arvore * arv_a);
 
 Arvore* cria_arv_vazia (void) {
    return NULL;
 }
 
-Arvore* arv_constroi (int n, Arvore* e, Arvore* d) {
+Arvore* arv_constroi (char c, Arvore* e, Arvore* d) {
   Arvore* a = (Arvore*)malloc(sizeof(Arvore));
-  a->info = n;
+  a->info = c;
   a->esq = e;
   a->dir = d;
   return a;
@@ -46,18 +46,22 @@ Arvore* arv_libera (Arvore* a) {
   return NULL;
 }
 
+// pré-ordem
 void arv_imprime (Arvore* a) {
+  printf("< %c ", a->info);
   if (!verifica_arv_vazia(a->esq)) arv_imprime(a->esq);
+  else printf("< > ");
   if (!verifica_arv_vazia(a->dir)) arv_imprime(a->dir);
-  printf("%d ", a->info);
+  else printf("< > ");
+  printf("> ");
 }
 
-int arv_pertence (Arvore* a, int n) {
+char arv_pertence (Arvore* a, char c) {
   if (verifica_arv_vazia(a)) return 0;
-  if (arv_pertence(a->esq, n)) return 1;
-  if (arv_pertence(a->dir, n)) return 1;
+  if (arv_pertence(a->esq, c)) return 1;
+  if (arv_pertence(a->dir, c)) return 1;
 
-  if (a->info == n) return 1;
+  if (a->info == c) return 1;
   return 0;
 }
 
@@ -100,18 +104,60 @@ int nos_folha_arvore(Arvore *a) {
   return sum;
 }
 
+// Retorna 1 se são espelhos, 0 se não
+int eh_espelho(Arvore * arv_a, Arvore * arv_b) {
+  // Primeiro, valida nulo, pra não tomar Seg fault na boca
+  if (verifica_arv_vazia(arv_a) || verifica_arv_vazia(arv_b)) {
+    if (verifica_arv_vazia(arv_a) == verifica_arv_vazia(arv_b)) 
+    // se ambos espelhos são nulos == verdadeiro, retorna 1
+      return 1;
+    // se só 1 for null, não é espelho, e retorna 0
+    return 0;
+  }
+
+  // se os valores não forem espelhados, retorna 0
+  if (arv_a->info != arv_b->info) return 0;
+
+  // verifica se todos os nós "filhos" são espelhos
+  int esq = eh_espelho(arv_a->esq, arv_b->dir);
+  int dir = eh_espelho(arv_a->dir, arv_b->esq);
+
+  // se for o caso, retorna verdadeiro, 1
+  if (esq == 1 && dir == 1) return 1;
+  // se não, retorna 0
+  return 0;
+}
+
 int main (int argc, char *argv[]) {
   Arvore *a, *a1, *a2, *a3, *a4, *a5;
-  a1 = arv_constroi(4,cria_arv_vazia(),cria_arv_vazia());
-  a2 = arv_constroi(2,cria_arv_vazia(),a1);
-  a3 = arv_constroi(5,cria_arv_vazia(),cria_arv_vazia());
-  a4 = arv_constroi(6,cria_arv_vazia(),cria_arv_vazia());
-  a5 = arv_constroi(3,a3,a4);
-  a  = arv_constroi(1,a2,a5);
+  a1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
+  a2 = arv_constroi('b',cria_arv_vazia(),a1);
+  a3 = arv_constroi('e',cria_arv_vazia(),cria_arv_vazia());
+  a4 = arv_constroi('f',cria_arv_vazia(),cria_arv_vazia());
+  a5 = arv_constroi('c',a3,a4);
+  a  = arv_constroi('a',a2,a5);
   arv_imprime(a);
+  printf("\n");
 
-  printf("\nnúmero máx na ávore: %d, altura da árvore: %d\n", max_arvore(*a), altura_arvore(a));
+  // printf("número máx na ávore: %d", max_arvore(*a));
+  printf("altura da árvore: %d\n", altura_arvore(a));
   printf("qtd nós: %d\nnós folha: %d\n", conta_nos(*a), nos_folha_arvore(a));
+
+  Arvore *b, *b1, *b2, *b3, *b4, *b5;
+  b1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
+  b2 = arv_constroi('b',b1,cria_arv_vazia());
+  b3 = arv_constroi('e',cria_arv_vazia(),cria_arv_vazia());
+  b4 = arv_constroi('f',cria_arv_vazia(),cria_arv_vazia());
+  b5 = arv_constroi('c',b4,b3);
+  b  = arv_constroi('a',b5,b2);
+  arv_imprime(b);
+  printf("\n");
+
+  if (eh_espelho(a, b)) 
+    printf("é espelho\n");
+  else
+    printf("não é espelho\n");
+
   // char ch; 
   // scanf("\n%c", &ch);
   // // if (arv_pertence(a, ch)) printf("%c -> Pertence\n",ch);
