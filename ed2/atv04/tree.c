@@ -53,6 +53,15 @@ void arv_imprime (Arvore* a) {
   printf("> ");
 }
 
+int arv_pertence (Arvore* a, char c) {
+  if (verifica_arv_vazia(a)) return 0;
+  if (arv_pertence(a->esq, c)) return 1;
+  if (arv_pertence(a->dir, c)) return 1;
+
+  if (a->info == c) return 1;
+  return 0;
+}
+
 int main (int argc, char *argv[]) {
   Arvore *a, *a1, *a2, *a3, *a4, *a5;
   a1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
@@ -62,5 +71,10 @@ int main (int argc, char *argv[]) {
   a5 = arv_constroi('c',a3,a4);
   a  = arv_constroi('a',a2,a5);
   arv_imprime(a);
+
+  char ch; 
+  scanf("\n%c", &ch);
+  if (arv_pertence(a, ch)) printf("%c -> Pertence\n",ch);
+  else printf("%c -> Não pertence\n",ch);
   return 0;
 }
