@@ -128,6 +128,11 @@ int eh_espelho(Arvore * arv_a, Arvore * arv_b) {
   return 0;
 }
 
+Arvore* cria_espelho(Arvore * arv_a) {
+  if (verifica_arv_vazia(arv_a)) return NULL;
+  return arv_constroi(arv_a->info, cria_espelho(arv_a->dir), cria_espelho(arv_a->esq));
+}
+
 int main (int argc, char *argv[]) {
   Arvore *a, *a1, *a2, *a3, *a4, *a5;
   a1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
@@ -143,13 +148,17 @@ int main (int argc, char *argv[]) {
   printf("altura da árvore: %d\n", altura_arvore(a));
   printf("qtd nós: %d\nnós folha: %d\n", conta_nos(*a), nos_folha_arvore(a));
 
-  Arvore *b, *b1, *b2, *b3, *b4, *b5;
-  b1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
-  b2 = arv_constroi('b',b1,cria_arv_vazia());
-  b3 = arv_constroi('e',cria_arv_vazia(),cria_arv_vazia());
-  b4 = arv_constroi('f',cria_arv_vazia(),cria_arv_vazia());
-  b5 = arv_constroi('c',b4,b3);
-  b  = arv_constroi('a',b5,b2);
+  // Arvore *b, *b1, *b2, *b3, *b4, *b5;
+  // b1 = arv_constroi('d',cria_arv_vazia(),cria_arv_vazia());
+  // b2 = arv_constroi('b',b1,cria_arv_vazia());
+  // b3 = arv_constroi('e',cria_arv_vazia(),cria_arv_vazia());
+  // b4 = arv_constroi('f',cria_arv_vazia(),cria_arv_vazia());
+  // b5 = arv_constroi('c',b4,b3);
+  // b  = arv_constroi('a',b5,b2);
+  // arv_imprime(b);
+  // printf("\n");
+
+  Arvore *b = cria_espelho(a);
   arv_imprime(b);
   printf("\n");
 
